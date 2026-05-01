@@ -35,9 +35,9 @@ int main()
     char nombreVentana[160];
     int matriz[22][10]= {{0}};
     ///PRUEBAS QUE DIBUJA LOS TETRAMINOS SEGUN SU POSICION EN LA MATRIZ (TESTEO)
-    matriz[21][4]= 1;
-    matriz[21][5]= 1;
-    matriz[20][5]= 1;
+    //matriz[21][4]= 1;
+    //matriz[21][5]= 1;
+    //matriz[20][5]= 1;
     ///pureba de posicion de la pieza (PARA TESTEO )
     int pieza[4][4]=
     {
@@ -69,12 +69,16 @@ int main()
     }
 
     int corriendo=1;
+    int jugando=0;
 
-    while(corriendo)
+
+    while(corriendo) ///LOOP PRINCIPAL
     {
-        gbt_procesar_entrada();///INICIA EL PROCESADOR DE ENTRAS DE TECLADO
+        int pausado=0;
         gbt_borrar_backbuffer(0);///COLOCAR UNA COLOR A TODA LA VENTANA
-
+        gbt_volcar_backbuffer();
+        gbt_procesar_entrada();///INICIA EL PROCESADOR DE ENTRAS DE TECLADO
+        eGBT_Tecla tecla=gbt_obtener_tecla_presionada();///GUARDA ULTIMA TECLA PRESIONADA EN tecla
         ///CALCULO PIXELES VENTANA DE JUEGO
         int ancho_tab=COL*TAM_CELDA;
         int alto_tab=(FIL-2)*TAM_CELDA;
@@ -82,29 +86,71 @@ int main()
         int inicio_x= (ANCHO_VENTANA-ancho_tab)/2;
         int inicio_y= (ALTO_VENTANA-alto_tab)/2;
 
-        ///FUNCIO DIBUJA EL FONDO DEL TETRIZ
-        dibujar_tablero(FIL,COL,inicio_x,inicio_y,TAM_CELDA,COLOR);
 
-        ///FUNCION QUE DIBUJA LAS PIEZAS EN SU POSICION FINAL
-        dibujar_matriz(matriz,FIL,COL,inicio_x,inicio_y,TAM_CELDA);
-
-        ///FUNCION QUE MUESTA EN EL JUEGO EL MOVIMIENTO DEL TETRAMINO (A MEJORAR)
-        dibujar_pieza(pieza,PIEZA,inicio_x, inicio_y,pos_x,pos_y, TAM_CELDA);
-
-        ///PANEL IZQUIERDO
-        dibujar_panel_izquierdo(inicio_x,inicio_y,alto_tab);
-
-        ///PANEL DERECHO
-        dibujar_panel_derecho(inicio_x,inicio_y,ancho_tab,alto_tab);
-
-        ///TEMPORIZADOR QUE RENTELIZA EL MOVIMIENTO DE LA PIEZA (TESTEO)
-        if(gbt_temporizador_consumir(temporizador))
+        if(tecla == GBTK_ENTER)
+            jugando=1;
+        if(tecla == GBTK_ESCAPE)///CERRAR VENTANA CON ESC
+            corriendo=0;
+        while(jugando)  ///PRESIONAR ENTER PARA JUGAR
         {
-            pos_y++;
+            gbt_procesar_entrada();
+            tecla=gbt_obtener_tecla_presionada();
+            if(tecla == GBTK_p) ///P PARA SALIR DE PAUSA
+            {
+                pausado=0;
+            }
+            if(tecla == GBTK_ESCAPE) ///SALIR DEL JUEGO CON ESCAPE (SOLO SI ESTA PAUSADO)
+            {
+                jugando=0;
+            }
+            while(!pausado)
+            {
+
+                gbt_procesar_entrada();
+                tecla=gbt_obtener_tecla_presionada();
+
+                if(tecla == GBTK_p) ///P PARA PAUSAR JUEGO
+                {
+                    pausado=1;
+                }
+
+                ///FUNCIO DIBUJA EL FONDO DEL TETRIZ
+                dibujar_tablero(FIL,COL,inicio_x,inicio_y,TAM_CELDA,COLOR);
+
+                ///FUNCION QUE DIBUJA LAS PIEZAS EN SU POSICION FINAL
+                dibujar_matriz(matriz,FIL,COL,inicio_x,inicio_y,TAM_CELDA);
+
+                ///FUNCION QUE MUESTA EN EL JUEGO EL MOVIMIENTO DEL TETRAMINO (A MEJORAR)
+                dibujar_pieza(pieza,PIEZA,inicio_x, inicio_y,pos_x,pos_y, TAM_CELDA);
+
+                ///PANEL IZQUIERDO
+                dibujar_panel_izquierdo(inicio_x,inicio_y,alto_tab);
+
+                ///PANEL DERECHO
+                dibujar_panel_derecho(inicio_x,inicio_y,ancho_tab,alto_tab);
+
+                ///TEMPORIZADOR QUE RENTELIZA EL MOVIMIENTO DE LA PIEZA (TESTEO)
+                if(gbt_temporizador_consumir(temporizador))
+                {
+                    pos_y++;
+                }
+                ///FUNCION QUE SUBE/DIBUJA TODO EN EL TETRIZ
+                gbt_volcar_backbuffer();
+
+                gbt_esperar(20);
+
+            }
+
+
         }
-        ///FUNCION QUE SUBE/DIBUJA TODO EN EL TETRIZ
-        gbt_volcar_backbuffer();
     }
+
+    gbt_temporizador_destruir(temporizador);
+    gbt_destruir_ventana();
+    gbt_cerrar();
+
+    return 0;
+
 }
 
 ///DONDE DE DICE TESTEO SE BORRA
