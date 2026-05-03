@@ -18,7 +18,7 @@ Entrega: Sí
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "funciones.h"
+#include "minos.h"
 #include "dibujos.h"
 #define ANCHO_VENTANA 200
 #define ALTO_VENTANA 180
@@ -29,6 +29,8 @@ Entrega: Sí
 #define COLOR 15
 #define PIEZA 4
 #include "GBT/gbt.h" ///BIBLIOTECA GBT
+#include "time.h"
+#include <string.h>
 
 int main()
 {
@@ -39,17 +41,28 @@ int main()
     //matriz[21][5]= 1;
     //matriz[20][5]= 1;
     ///pureba de posicion de la pieza (PARA TESTEO )
+
+
+    /*
     int pieza[4][4]=
     {
-        {0,1,0,0},
-        {0,1,0,0},
-        {0,1,1,0},
-        {0,0,0,0}
-    };
+        {0,0,0,0},
+        {0,0,0,0},
+        {1,1,1,0},
+        {1,0,0,0}
+    };*/
     int pos_x=3; //COLUMNA EN EL TABLERO
     int pos_y=0;//FILA EN EL TABLERO
 
     printf("Hello world!\n");
+
+    /*Random para elegir la pieza a crear*/
+    srand(time(NULL));
+    int pieza [4][4];
+    int i = rand()%7;
+    memcpy(pieza, piezas_tot[i],sizeof(pieza));
+
+
 ///CREACION DE LA VENTANA
     sprintf(nombreVentana, "Ventana %dx%d", ANCHO_VENTANA,ALTO_VENTANA);
 
