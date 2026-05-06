@@ -2,17 +2,17 @@
 Apellido: Lopez Nina, Aylin Yussel
 DNI: 94593626
 Usuario: AylinLopez05
-Entrega: Sí
+Entrega: SÃ­
 
 Apellido: Magnone, Mauro Marcelo
 DNI: 42565840
 Usuario: Mauro-Mag
-Entrega: Sí
+Entrega: SÃ­
 
 Apellido: Oliveira, Nuria Elisa
 DNI: 31652404
 Usuario: Nuria-Oliveira
-Entrega: Sí
+Entrega: SÃ­
 */
 
 
@@ -20,6 +20,9 @@ Entrega: Sí
 #include <stdlib.h>
 #include "minos.h"
 #include "dibujos.h"
+#include "GBT/gbt.h" ///BIBLIOTECA GBT
+#include "time.h"
+#include <string.h>
 #define ANCHO_VENTANA 200
 #define ALTO_VENTANA 180
 #define ESCALA_VENTANA 4
@@ -28,9 +31,7 @@ Entrega: Sí
 #define COL 10
 #define COLOR 15
 #define PIEZA 4
-#include "GBT/gbt.h" ///BIBLIOTECA GBT
-#include "time.h"
-#include <string.h>
+
 
 int main()
 {
@@ -60,7 +61,7 @@ int main()
     srand(time(NULL));
     int pieza [4][4];
     int i = rand()%7;
-    memcpy(pieza, piezas_tot[i],sizeof(pieza));
+    memcpy(pieza, *piezas_tot[i],sizeof(pieza));
 
 
 ///CREACION DE LA VENTANA
@@ -116,6 +117,7 @@ int main()
             {
                 jugando=0;
             }
+
             while(!pausado)
             {
 
@@ -126,6 +128,8 @@ int main()
                 {
                     pausado=1;
                 }
+
+
 
                 ///FUNCIO DIBUJA EL FONDO DEL TETRIZ
                 dibujar_tablero(FIL,COL,inicio_x,inicio_y,TAM_CELDA,COLOR);
@@ -141,6 +145,10 @@ int main()
 
                 ///PANEL DERECHO
                 dibujar_panel_derecho(inicio_x,inicio_y,ancho_tab,alto_tab);
+
+
+                moverPieza(&pos_x, 5, pieza, PIEZA);
+                //falta correjir, hace falta saber cual es la pos mas a la derecha posible y la mas a la izq
 
                 ///TEMPORIZADOR QUE RENTELIZA EL MOVIMIENTO DE LA PIEZA (TESTEO)
                 if(gbt_temporizador_consumir(temporizador))

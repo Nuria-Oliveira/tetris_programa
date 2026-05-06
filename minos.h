@@ -1,7 +1,7 @@
 #ifndef FUNCIONES_H_INCLUDED
 #define FUNCIONES_H_INCLUDED
 
-/*las piezas est·n creadas por posiciÛn de rotaciÛn*/
+/*las piezas est√°n creadas por posici√≥n de rotaci√≥n*/
 int l_1[4][4]=
 {
     {0,0,0,0},
@@ -114,9 +114,30 @@ int t_1[4][4]=
     {0,1,0,0},
     {1,1,1,0}
 };
-/*no sÈ si agregar todas de una vez*/
-int (*piezas_tot[7])[4] = {l_1,o_1,j_1,i_1,s_1,z_1,t_1};
+int t_2[4][4]=
+{
+    {0,0,0,0},
+    {1,0,0,0},
+    {1,1,0,0},
+    {1,0,0,0}
+};
+int t_3[4][4]=
+{
+    {0,0,0,0},
+    {1,1,1,0},
+    {0,1,0,0},
+    {0,0,0,0}
+};
 
+int t_4[4][4]=
+{
+    {0,0,0,0},
+    {0,1,0,0},
+    {1,1,0,0},
+    {0,1,0,0}
+};
 
+/*no s√© si agregar todas de una vez*/
+int (*piezas_tot[7])[4][4] = {&l_1,&o_1,&j_1,&i_1,&s_1,&z_1,&t_1};
 
 #endif // FUNCIONES_H_INCLUDED
