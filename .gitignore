@@ -2,7 +2,6 @@ bin/
 obj/
 *.layout
 *.depend
-*.depend
 lib/
 *.dll
 *.a
