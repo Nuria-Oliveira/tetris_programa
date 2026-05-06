@@ -2,17 +2,17 @@
 Apellido: Lopez Nina, Aylin Yussel
 DNI: 94593626
 Usuario: AylinLopez05
-Entrega: Sí
+Entrega: SÃ­
 
 Apellido: Magnone, Mauro Marcelo
 DNI: 42565840
 Usuario: Mauro-Mag
-Entrega: Sí
+Entrega: SÃ­
 
 Apellido: Oliveira, Nuria Elisa
 DNI: 31652404
 Usuario: Nuria-Oliveira
-Entrega: Sí
+Entrega: SÃ­
 */
 
 
@@ -59,20 +59,9 @@ int main()
 
     /*Random para elegir la pieza a crear*/
     srand(time(NULL));
-    int pieza [PIEZA][PIEZA];
+    int pieza [4][4];
     int i = rand()%7;
     memcpy(pieza, *piezas_tot[i],sizeof(pieza));
-//TEST
-//    for (int i = 0; i < PIEZA; i++)
-//    {
-//        for (int j = 0; j < PIEZA; j++)
-//        {
-//            pieza[i][j] = (*piezas_tot[0])[i][j];
-//            printf("%d ", pieza[i][j]);
-//        }
-//        printf("\n");
-//    }
-//TEST
 
 
 ///CREACION DE LA VENTANA
