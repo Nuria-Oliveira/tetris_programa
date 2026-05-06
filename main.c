@@ -18,8 +18,11 @@ Entrega: Sí
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "funciones.h"
+#include "minos.h"
 #include "dibujos.h"
+#include "GBT/gbt.h" ///BIBLIOTECA GBT
+#include "time.h"
+#include <string.h>
 #define ANCHO_VENTANA 200
 #define ALTO_VENTANA 180
 #define ESCALA_VENTANA 4
@@ -28,7 +31,7 @@ Entrega: Sí
 #define COL 10
 #define COLOR 15
 #define PIEZA 4
-#include "GBT/gbt.h" ///BIBLIOTECA GBT
+
 
 int main()
 {
@@ -39,17 +42,39 @@ int main()
     //matriz[21][5]= 1;
     //matriz[20][5]= 1;
     ///pureba de posicion de la pieza (PARA TESTEO )
+
+
+    /*
     int pieza[4][4]=
     {
-        {0,1,0,0},
-        {0,1,0,0},
-        {0,1,1,0},
-        {0,0,0,0}
-    };
+        {0,0,0,0},
+        {0,0,0,0},
+        {1,1,1,0},
+        {1,0,0,0}
+    };*/
     int pos_x=3; //COLUMNA EN EL TABLERO
     int pos_y=0;//FILA EN EL TABLERO
 
     printf("Hello world!\n");
+
+    /*Random para elegir la pieza a crear*/
+    srand(time(NULL));
+    int pieza [PIEZA][PIEZA];
+    int i = rand()%7;
+    memcpy(pieza, *piezas_tot[i],sizeof(pieza));
+//TEST
+//    for (int i = 0; i < PIEZA; i++)
+//    {
+//        for (int j = 0; j < PIEZA; j++)
+//        {
+//            pieza[i][j] = (*piezas_tot[0])[i][j];
+//            printf("%d ", pieza[i][j]);
+//        }
+//        printf("\n");
+//    }
+//TEST
+
+
 ///CREACION DE LA VENTANA
     sprintf(nombreVentana, "Ventana %dx%d", ANCHO_VENTANA,ALTO_VENTANA);
 
@@ -103,6 +128,7 @@ int main()
             {
                 jugando=0;
             }
+
             while(!pausado)
             {
 
@@ -113,6 +139,8 @@ int main()
                 {
                     pausado=1;
                 }
+
+
 
                 ///FUNCIO DIBUJA EL FONDO DEL TETRIZ
                 dibujar_tablero(FIL,COL,inicio_x,inicio_y,TAM_CELDA,COLOR);
@@ -128,6 +156,10 @@ int main()
 
                 ///PANEL DERECHO
                 dibujar_panel_derecho(inicio_x,inicio_y,ancho_tab,alto_tab);
+
+
+                moverPieza(&pos_x, 5, pieza, PIEZA);
+                //falta correjir, hace falta saber cual es la pos mas a la derecha posible y la mas a la izq
 
                 ///TEMPORIZADOR QUE RENTELIZA EL MOVIMIENTO DE LA PIEZA (TESTEO)
                 if(gbt_temporizador_consumir(temporizador))

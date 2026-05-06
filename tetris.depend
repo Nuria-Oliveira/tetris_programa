@@ -1,0 +1,50 @@
+# depslib dependency file v1.0
+1778043567 source:c:\programas_unlam\tetris_topicos\tetris_programa\dibujos.c
+	"dibujos.h"
+	"GBT/gbt.h"
+	<stdio.h>
+
+1778043567 c:\programas_unlam\tetris_topicos\tetris_programa\dibujos.h
+
+1777578232 c:\programas_unlam\tetris_topicos\tetris_programa\lib\gbt_v2026.1c.01\include\gbt\gbt.h
+	"gbt_entrada.h"
+	"gbt_graficos.h"
+	"gbt_logger.h"
+	"gbt_temporizador.h"
+	"gbt_vector.h"
+
+1777578233 c:\programas_unlam\tetris_topicos\tetris_programa\lib\gbt_v2026.1c.01\include\gbt\gbt_entrada.h
+	<stdint.h>
+
+1777578233 c:\programas_unlam\tetris_topicos\tetris_programa\lib\gbt_v2026.1c.01\include\gbt\gbt_graficos.h
+	<stdint.h>
+
+1777578233 c:\programas_unlam\tetris_topicos\tetris_programa\lib\gbt_v2026.1c.01\include\gbt\gbt_logger.h
+
+1777578233 c:\programas_unlam\tetris_topicos\tetris_programa\lib\gbt_v2026.1c.01\include\gbt\gbt_temporizador.h
+	<stdint.h>
+
+1777578233 c:\programas_unlam\tetris_topicos\tetris_programa\lib\gbt_v2026.1c.01\include\gbt\gbt_vector.h
+	<stdlib.h>
+	<stdint.h>
+
+1778043567 source:c:\programas_unlam\tetris_topicos\tetris_programa\main.c
+	<stdio.h>
+	<stdlib.h>
+	"minos.h"
+	"dibujos.h"
+	"GBT/gbt.h"
+	"time.h"
+	<string.h>
+
+1778043567 c:\programas_unlam\tetris_topicos\tetris_programa\minos.h
+
+1778043567 source:c:\programas_unlam\tetris_topicos\tetris_programa\minos.c
+
+1778027752 source:c:\programas_unlam\tetris_topicos\tetris_programa\funciones.c
+	"GBT/gbt.h"
+	"funciones.h"
+	<stdio.h>
+
+1778027731 c:\programas_unlam\tetris_topicos\tetris_programa\funciones.h
+

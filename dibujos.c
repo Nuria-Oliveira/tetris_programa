@@ -1,5 +1,6 @@
 #include "dibujos.h"
 #include "GBT/gbt.h"
+#include <stdio.h>
 #define FIL 22
 #define COL 10
 #define PIEZA 4
@@ -110,3 +111,54 @@ void dibujar_panel_derecho(int inicio_x, int inicio_y,int ancho_tab,int alto_tab
     dibujar_rectangulo(panel_x,panel_y,panel_w,alto_tab,15);
 }
 
+void moverPieza (int *pos, int limDer, int pieza[PIEZA][PIEZA], int cf)
+{
+    //falta correjir, hace falta saber cual es la pos mas a la derecha posible y la mas a la izq
+    int aux;
+    int col=-1; //columna de la pieza mas a la der o izq segun mov
+    int i=0, j=0;
+    eGBT_Tecla tecla = gbt_obtener_tecla_presionada();
+    if(tecla==GBTK_IZQUIERDA)
+    {
+        aux=*pos-1;
+        //verifica la posicion mas a la izq de la pieza
+        while(j<cf && col==-1)
+        {
+            i=0;
+            while(i<cf && col==-1)
+            {
+                if(pieza[i][j]!=0)
+                {
+                    col=j;
+                }
+                i++;
+
+            }
+            j++;
+        }
+        if(aux>=col)
+            *pos=aux;
+    }
+
+    if(tecla==GBTK_DERECHA)
+    {
+        aux=*pos+1;
+        j=cf-1;
+        //verifica la posicion mas a la derecha de la pieza
+         while(j>=0 && col==-1)
+        {
+            i=0;
+            while(i<cf && col==-1)
+            {
+                if(pieza[i][j]!=0)
+                {
+                    col=j;
+                }
+                i++;
+            }
+            j--;
+        }
+        if(aux<=limDer+col)
+            *pos=aux;
+    }
+}
