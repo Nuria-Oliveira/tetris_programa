@@ -1,10 +1,11 @@
 # depslib dependency file v1.0
-1778043567 source:c:\programas_unlam\tetris_topicos\tetris_programa\dibujos.c
+1778177998 source:c:\programas_unlam\tetris_topicos\tetris_programa\dibujos.c
 	"dibujos.h"
 	"GBT/gbt.h"
 	<stdio.h>
 
-1778043567 c:\programas_unlam\tetris_topicos\tetris_programa\dibujos.h
+1778172760 c:\programas_unlam\tetris_topicos\tetris_programa\dibujos.h
+	"GBT/gbt.h"
 
 1777578232 c:\programas_unlam\tetris_topicos\tetris_programa\lib\gbt_v2026.1c.01\include\gbt\gbt.h
 	"gbt_entrada.h"
@@ -28,7 +29,7 @@
 	<stdlib.h>
 	<stdint.h>
 
-1778043567 source:c:\programas_unlam\tetris_topicos\tetris_programa\main.c
+1778178081 source:c:\programas_unlam\tetris_topicos\tetris_programa\main.c
 	<stdio.h>
 	<stdlib.h>
 	"minos.h"
@@ -37,7 +38,7 @@
 	"time.h"
 	<string.h>
 
-1778043567 c:\programas_unlam\tetris_topicos\tetris_programa\minos.h
+1778177566 c:\programas_unlam\tetris_topicos\tetris_programa\minos.h
 
 1778043567 source:c:\programas_unlam\tetris_topicos\tetris_programa\minos.c
 

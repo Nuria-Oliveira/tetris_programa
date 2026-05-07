@@ -5,6 +5,7 @@
 #define COL 10
 #define PIEZA 4
 #define TAM_CELDA 7
+#define TEMP 1.0
 
 void dibujar_cuadrado (int X, int Y, int color, int tam_cel)
 {
@@ -117,8 +118,8 @@ void moverPieza (int *pos, int limDer, int pieza[PIEZA][PIEZA], int cf)
     int aux;
     int col=-1; //columna de la pieza mas a la der o izq segun mov
     int i=0, j=0;
-    eGBT_Tecla tecla = gbt_obtener_tecla_presionada();
-    if(tecla==GBTK_IZQUIERDA)
+//    eGBT_Tecla tecla = gbt_obtener_tecla_presionada();
+    if(gbt_tecla_sostenida(GBTK_IZQUIERDA))
     {
         aux=*pos-1;
         //verifica la posicion mas a la izq de la pieza
@@ -140,12 +141,12 @@ void moverPieza (int *pos, int limDer, int pieza[PIEZA][PIEZA], int cf)
             *pos=aux;
     }
 
-    if(tecla==GBTK_DERECHA)
+    if(gbt_tecla_sostenida(GBTK_DERECHA))
     {
         aux=*pos+1;
         j=cf-1;
         //verifica la posicion mas a la derecha de la pieza
-         while(j>=0 && col==-1)
+        while(j>=0 && col==-1)
         {
             i=0;
             while(i<cf && col==-1)
@@ -161,4 +162,16 @@ void moverPieza (int *pos, int limDer, int pieza[PIEZA][PIEZA], int cf)
         if(aux<=limDer+col)
             *pos=aux;
     }
+}
+
+void caidaFicha(tGBT_Temporizador *temp, int *pos_y, int lim_inf, float tick)
+{
+//    if(gbt_tecla_sostenida(GBTK_ABAJO))
+//    {
+//        tGBT_Temporizador *temp = gbt_temporizador_crear(0.5);
+//    }
+
+    if((gbt_temporizador_consumir(temp) && *pos_y <=lim_inf))
+        *pos_y=*pos_y+1;
+
 }

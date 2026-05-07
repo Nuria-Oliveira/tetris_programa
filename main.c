@@ -33,6 +33,7 @@ Entrega: Sí
 #define PIEZA 4
 
 
+
 int main()
 {
     char nombreVentana[160];
@@ -86,7 +87,8 @@ int main()
     gbt_crear_ventana(nombreVentana,ANCHO_VENTANA,ALTO_VENTANA,ESCALA_VENTANA);
 
 ///INICIA TEMPORIZADOR SERA USADO MAS ADELANTE
-    tGBT_Temporizador *temporizador = gbt_temporizador_crear(1.0);
+    float tick=1.0; //TEST usado para actualizar el tiempo del temporizador
+    tGBT_Temporizador *temporizador = gbt_temporizador_crear(tick); // = gbt_temporizador_crear(tick);
     if (!temporizador)
     {
         fprintf(stderr, "Error al crear el temporizador: %s\n", gbt_obtener_log());
@@ -162,10 +164,9 @@ int main()
                 //falta correjir, hace falta saber cual es la pos mas a la derecha posible y la mas a la izq
 
                 ///TEMPORIZADOR QUE RENTELIZA EL MOVIMIENTO DE LA PIEZA (TESTEO)
-                if(gbt_temporizador_consumir(temporizador))
-                {
-                    pos_y++;
-                }
+
+                caidaFicha(temporizador, &pos_y, 15, tick);//15=limite inferior del tablero (a modificar con una varaiable, de momento funciona asi)
+
                 ///FUNCION QUE SUBE/DIBUJA TODO EN EL TETRIZ
                 gbt_volcar_backbuffer();
 
