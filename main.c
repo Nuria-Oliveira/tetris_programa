@@ -20,6 +20,9 @@ Entrega: Sí
 #include <stdlib.h>
 #include "minos.h"
 #include "dibujos.h"
+#include "GBT/gbt.h" ///BIBLIOTECA GBT
+#include "time.h"
+#include <string.h>
 #define ANCHO_VENTANA 200
 #define ALTO_VENTANA 180
 #define ESCALA_VENTANA 4
@@ -28,9 +31,8 @@ Entrega: Sí
 #define COL 10
 #define COLOR 15
 #define PIEZA 4
-#include "GBT/gbt.h" ///BIBLIOTECA GBT
-#include "time.h"
-#include <string.h>
+
+
 
 int main()
 {
@@ -58,9 +60,20 @@ int main()
 
     /*Random para elegir la pieza a crear*/
     srand(time(NULL));
-    int pieza [4][4];
+    int pieza [PIEZA][PIEZA];
     int i = rand()%7;
-    memcpy(pieza, piezas_tot[i],sizeof(pieza));
+    memcpy(pieza, *piezas_tot[i],sizeof(pieza));
+//TEST
+//    for (int i = 0; i < PIEZA; i++)
+//    {
+//        for (int j = 0; j < PIEZA; j++)
+//        {
+//            pieza[i][j] = (*piezas_tot[0])[i][j];
+//            printf("%d ", pieza[i][j]);
+//        }
+//        printf("\n");
+//    }
+//TEST
 
 
 ///CREACION DE LA VENTANA
@@ -74,7 +87,8 @@ int main()
     gbt_crear_ventana(nombreVentana,ANCHO_VENTANA,ALTO_VENTANA,ESCALA_VENTANA);
 
 ///INICIA TEMPORIZADOR SERA USADO MAS ADELANTE
-    tGBT_Temporizador *temporizador = gbt_temporizador_crear(1.0);
+    float tick=1.0; //TEST usado para actualizar el tiempo del temporizador
+    tGBT_Temporizador *temporizador = gbt_temporizador_crear(tick); // = gbt_temporizador_crear(tick);
     if (!temporizador)
     {
         fprintf(stderr, "Error al crear el temporizador: %s\n", gbt_obtener_log());
@@ -116,6 +130,7 @@ int main()
             {
                 jugando=0;
             }
+
             while(!pausado)
             {
 
@@ -126,6 +141,8 @@ int main()
                 {
                     pausado=1;
                 }
+
+
 
                 ///FUNCIO DIBUJA EL FONDO DEL TETRIZ
                 dibujar_tablero(FIL,COL,inicio_x,inicio_y,TAM_CELDA,COLOR);
@@ -142,11 +159,14 @@ int main()
                 ///PANEL DERECHO
                 dibujar_panel_derecho(inicio_x,inicio_y,ancho_tab,alto_tab);
 
+
+                moverPieza(&pos_x, 5, pieza, PIEZA);
+                //falta correjir, hace falta saber cual es la pos mas a la derecha posible y la mas a la izq
+
                 ///TEMPORIZADOR QUE RENTELIZA EL MOVIMIENTO DE LA PIEZA (TESTEO)
-                if(gbt_temporizador_consumir(temporizador))
-                {
-                    pos_y++;
-                }
+
+                caidaFicha(temporizador, &pos_y, 15, tick);//15=limite inferior del tablero (a modificar con una varaiable, de momento funciona asi)
+
                 ///FUNCION QUE SUBE/DIBUJA TODO EN EL TETRIZ
                 gbt_volcar_backbuffer();
 
