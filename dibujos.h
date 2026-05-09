@@ -1,5 +1,6 @@
 #ifndef DIBUJOS_H_INCLUDED
 #define DIBUJOS_H_INCLUDED
+#include "GBT/gbt.h"
 
 void dibujar_cuadrado (int X, int Y, int color, int tam_cel);
 void dibujar_tablero(int cf, int cc,int ini_x, int ini_y,int tam_celda,int color);
@@ -8,6 +9,9 @@ void dibujar_pieza(int pieza[][4],int ce,int ini_x, int ini_y,int pos_x, int pos
 void dibujar_rectangulo (int ini_x, int ini_y, int ancho_rec, int altura_rec, int color);
 void dibujar_panel_izquierdo(int inicio_x, int inicio_y,int alto_tab);
 void dibujar_panel_derecho(int inicio_x, int inicio_y,int ancho_tab,int alto_tab);
+void moverPieza (int *pos_x, int limDer, int pieza [4][4], int PIEZA);
+
+void caidaFicha (tGBT_Temporizador *temporizador, int *pos_y, int lim_inferiorY, float tick);
 void moverPieza (int *pos_x, int limDer, int pieza [4][4], int PIEZA);
 
 #endif // DIBUJOS_H_INCLUDED
