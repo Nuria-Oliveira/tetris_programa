@@ -112,7 +112,7 @@ void dibujar_panel_derecho(int inicio_x, int inicio_y,int ancho_tab,int alto_tab
     dibujar_rectangulo(panel_x,panel_y,panel_w,alto_tab,15);
 }
 
-void moverPieza (int *pos, int limDer, int pieza[PIEZA][PIEZA], int cf)
+void moverPieza (int *pos, int totCol, int pieza[PIEZA][PIEZA], int cf)
 {
     //falta correjir, hace falta saber cual es la pos mas a la derecha posible y la mas a la izq
     int aux;
@@ -125,22 +125,21 @@ void moverPieza (int *pos, int limDer, int pieza[PIEZA][PIEZA], int cf)
         //verifica la posicion mas a la izq de la pieza
         while(j<cf && col==-1)
         {
-            i=0;
             while(i<cf && col==-1)
             {
                 if(pieza[i][j]!=0)
                 {
                     col=j;
+                    printf("col %d\n", col);
                 }
                 i++;
-
             }
             j++;
+            i=0;
         }
-        if(aux>=col)
+        if(aux>=0-col)
             *pos=aux;
     }
-
     if(gbt_tecla_sostenida(GBTK_DERECHA))
     {
         aux=*pos+1;
@@ -148,30 +147,30 @@ void moverPieza (int *pos, int limDer, int pieza[PIEZA][PIEZA], int cf)
         //verifica la posicion mas a la derecha de la pieza
         while(j>=0 && col==-1)
         {
-            i=0;
             while(i<cf && col==-1)
             {
                 if(pieza[i][j]!=0)
                 {
                     col=j;
+                    printf("col %d\n", col);
                 }
                 i++;
             }
             j--;
+            i=0;
         }
-        if(aux<=limDer+col)
+        if(aux<totCol-col)
             *pos=aux;
     }
 }
 
-void caidaFicha(tGBT_Temporizador *temp, int *pos_y, int lim_inf, float tick)
+void caidaFicha(tGBT_Temporizador *temp, int *pos_y, int lim_inf)
 {
-//    if(gbt_tecla_sostenida(GBTK_ABAJO))
-//    {
-//        tGBT_Temporizador *temp = gbt_temporizador_crear(0.5);
-//    }
-
-    if((gbt_temporizador_consumir(temp) && *pos_y <=lim_inf))
+    if(gbt_temporizador_consumir(temp) && *pos_y <lim_inf)
         *pos_y=*pos_y+1;
-
+//    if(gbt_temporizador_consumir(temp) && !colision(*pos_y))
+//        *pos_y=*pos_y+1;
+//    else
+//        fijar(pieza);
+//
 }

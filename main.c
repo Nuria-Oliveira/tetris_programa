@@ -63,6 +63,7 @@ int main()
     int pieza [PIEZA][PIEZA];
     int i = rand()%7;
     memcpy(pieza, *piezas_tot[i],sizeof(pieza));
+
 //TEST
 //    for (int i = 0; i < PIEZA; i++)
 //    {
@@ -160,12 +161,12 @@ int main()
                 dibujar_panel_derecho(inicio_x,inicio_y,ancho_tab,alto_tab);
 
 
-                moverPieza(&pos_x, 5, pieza, PIEZA);
-                //falta correjir, hace falta saber cual es la pos mas a la derecha posible y la mas a la izq
+                moverPieza(&pos_x, COL, pieza, PIEZA);
+                //falta correjir, hace falta saber cual es la pos mas a la derecha posible
 
                 ///TEMPORIZADOR QUE RENTELIZA EL MOVIMIENTO DE LA PIEZA (TESTEO)
 
-                caidaFicha(temporizador, &pos_y, 15, tick);//15=limite inferior del tablero (a modificar con una varaiable, de momento funciona asi)
+                caidaFicha(temporizador, &pos_y, alto_tab-FIL);//15=limite inferior del tablero (a modificar con una varaiable, de momento funciona asi)
 
                 ///FUNCION QUE SUBE/DIBUJA TODO EN EL TETRIZ
                 gbt_volcar_backbuffer();
