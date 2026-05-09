@@ -9,7 +9,7 @@
 
 void dibujar_cuadrado (int X, int Y, int color, int tam_cel)
 {
-    for(int dy=1; dy<tam_cel-1; dy++)///Dibuja un cuadrado relleno (sin bordes) de tamaño tam_cel en (X,Y)
+    for(int dy=1; dy<tam_cel-1; dy++)///Dibuja un cuadrado relleno (sin bordes) de tamaÃ±o tam_cel en (X,Y)
     {
         for(int dx=1; dx<tam_cel-1; dx++)
             gbt_dibujar_pixel(X+dx, Y+dy, color);
@@ -25,8 +25,8 @@ void dibujar_tablero(int cf, int cc,int ini_x, int ini_y,int tam_celda,int color
         {
             if(i>=2) ///Ignora las primeras 2 filas (zona superior oculta del tablero)
             {
-                X=ini_x+j*tam_celda;/// Calcula la posición en píxeles en X
-                Y=ini_y+(i-2)*tam_celda;///Calcula la posición en píxeles en Y (ajustada por las 2 filas ocultas)
+                X=ini_x+j*tam_celda;/// Calcula la posiciÃ³n en pÃ­xeles en X
+                Y=ini_y+(i-2)*tam_celda;///Calcula la posiciÃ³n en pÃ­xeles en Y (ajustada por las 2 filas ocultas)
 
                 dibujar_cuadrado (X,Y,color,tam_celda);
             }
@@ -45,8 +45,8 @@ void dibujar_matriz(int mat[][COL],int cf, int cc,int ini_x, int ini_y,int tam_c
             {
                 int color=mat[i][j];///SELECCION DE COLOR (USO TEMPORAL)
 
-                X=ini_x+j*tam_celda;///Calcula la posición en píxeles en X
-                Y=ini_y+(i-2)*tam_celda;///Calcula la posición en píxeles en Y (ajustada por las 2 filas ocultas)
+                X=ini_x+j*tam_celda;///Calcula la posiciÃ³n en pÃ­xeles en X
+                Y=ini_y+(i-2)*tam_celda;///Calcula la posiciÃ³n en pÃ­xeles en Y (ajustada por las 2 filas ocultas)
 
                 dibujar_cuadrado(X,Y,color,tam_celda);
             }
@@ -76,12 +76,12 @@ void dibujar_pieza(int pieza[][PIEZA],int ce,int ini_x, int ini_y,int pos_x, int
 
 void dibujar_rectangulo (int ini_x, int ini_y, int ancho_rec, int altura_rec, int color)
 {
-    for(int i=0; i<ancho_rec; i++) ///Dibuja las líneas horizontal superior e inferior del rectángulo
+    for(int i=0; i<ancho_rec; i++) ///Dibuja las lÃ­neas horizontal superior e inferior del rectÃ¡ngulo
     {
         gbt_dibujar_pixel(ini_x+i,ini_y,color); //linea superior
         gbt_dibujar_pixel(ini_x+i,ini_y+altura_rec,color);//linea inferior
     }
-    for (int j=0; j<altura_rec; j++) /// Dibuja las líneas verticales izquierda y derecha
+    for (int j=0; j<altura_rec; j++) /// Dibuja las lÃ­neas verticales izquierda y derecha
     {
         gbt_dibujar_pixel(ini_x,ini_y+j,color);//LIENA IZQUIERDA
         gbt_dibujar_pixel(ini_x+ancho_rec,ini_y+j,color);//LINEA DERECHA

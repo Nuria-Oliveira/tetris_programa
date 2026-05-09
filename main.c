@@ -2,17 +2,17 @@
 Apellido: Lopez Nina, Aylin Yussel
 DNI: 94593626
 Usuario: AylinLopez05
-Entrega: Sí
+Entrega: SÃ­
 
 Apellido: Magnone, Mauro Marcelo
 DNI: 42565840
 Usuario: Mauro-Mag
-Entrega: Sí
+Entrega: SÃ­
 
 Apellido: Oliveira, Nuria Elisa
 DNI: 31652404
 Usuario: Nuria-Oliveira
-Entrega: Sí
+Entrega: SÃ­
 */
 
 
