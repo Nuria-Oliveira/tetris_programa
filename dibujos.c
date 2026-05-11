@@ -130,7 +130,6 @@ void moverPieza (int *pos, int totCol, int pieza[PIEZA][PIEZA], int cf)
                 if(pieza[i][j]!=0)
                 {
                     col=j;
-                    printf("col %d\n", col);
                 }
                 i++;
             }
@@ -152,7 +151,6 @@ void moverPieza (int *pos, int totCol, int pieza[PIEZA][PIEZA], int cf)
                 if(pieza[i][j]!=0)
                 {
                     col=j;
-                    printf("col %d\n", col);
                 }
                 i++;
             }
@@ -168,9 +166,37 @@ void caidaFicha(tGBT_Temporizador *temp, int *pos_y, int lim_inf)
 {
     if(gbt_temporizador_consumir(temp) && *pos_y <lim_inf)
         *pos_y=*pos_y+1;
+    if(gbt_tecla_sostenida(GBTK_ABAJO) && *pos_y<lim_inf)
+        *pos_y=*pos_y+1;
+
+//    if(colision(*pos_y))
+//        fijar();
 //    if(gbt_temporizador_consumir(temp) && !colision(*pos_y))
 //        *pos_y=*pos_y+1;
 //    else
 //        fijar(pieza);
-//
+
+}
+
+void fijar (int mat [][COL], int cf, int cc, int pieza [][PIEZA], int pos_y, int pos_x)
+{
+    int i=pos_y, j=pos_x;
+    int pi=0, pj=0; //i y j de la pieza
+    printf("x= %d\n", i);
+    printf("y= %d\n", j);
+    printf("limite x: %d limite y: %d\n", cf, cc);
+    while(i<cf && pi<PIEZA)
+    {
+        while(j<cc && pj<PIEZA)
+        {
+            if(pieza[pi][pj]!=0)
+                mat[pos_y+pi+2][pos_x+pj]=pieza[pi][pj];
+            j++;
+            pj++;
+        }
+        j=0;
+        pj=0;
+        i++;
+        pi++;
+    }
 }
