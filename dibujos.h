@@ -10,7 +10,9 @@ void dibujar_rectangulo (int ini_x, int ini_y, int ancho_rec, int altura_rec, in
 void dibujar_panel_izquierdo(int inicio_x, int inicio_y,int alto_tab);
 void dibujar_panel_derecho(int inicio_x, int inicio_y,int ancho_tab,int alto_tab);
 
+void fijar(int mat[][10], int FIL, int COL, int pieza[][4], int pos_y, int pos_x);
 void caidaFicha (tGBT_Temporizador *temporizador, int *pos_y, int lim_inferiorY);
 void moverPieza (int *pos_x, int limDer, int pieza [4][4], int PIEZA);
+//int colision (int mat [][10], int pieza [][4], int pos_y, int pos_x)
 
 #endif // DIBUJOS_H_INCLUDED

@@ -23,6 +23,7 @@ Entrega: Sí
 #include "GBT/gbt.h" ///BIBLIOTECA GBT
 #include "time.h"
 #include <string.h>
+
 #define ANCHO_VENTANA 200
 #define ALTO_VENTANA 180
 #define ESCALA_VENTANA 4
@@ -166,8 +167,20 @@ int main()
 
                 ///TEMPORIZADOR QUE RENTELIZA EL MOVIMIENTO DE LA PIEZA (TESTEO)
 
-                caidaFicha(temporizador, &pos_y, alto_tab-FIL);//15=limite inferior del tablero (a modificar con una varaiable, de momento funciona asi)
+                caidaFicha(temporizador, &pos_y, 16);//16=limite inferior del tablero (a modificar con una varaiable, de momento funciona asi)
 
+                if(pos_y==16) //16=limite inferior del tablero (a modificar con una varaiable, de momento funciona asi)
+                {
+                    fijar(matriz, FIL, COL, pieza, pos_y, pos_x);
+                    dibujar_matriz(matriz,FIL,COL,inicio_x,inicio_y,TAM_CELDA);
+                    pos_x=3; //COLUMNA EN EL TABLERO
+                    pos_y=0;//FILA EN EL TABLERO
+                    srand(time(NULL));
+                    i = rand()%7;
+                    memcpy(pieza, *piezas_tot[i],sizeof(pieza));
+
+
+                }
                 ///FUNCION QUE SUBE/DIBUJA TODO EN EL TETRIZ
                 gbt_volcar_backbuffer();
 
