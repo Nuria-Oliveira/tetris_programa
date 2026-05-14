@@ -167,9 +167,13 @@ int main()
 
                 ///TEMPORIZADOR QUE RENTELIZA EL MOVIMIENTO DE LA PIEZA (TESTEO)
 
-                caidaFicha(temporizador, &pos_y, 16);//16=limite inferior del tablero (a modificar con una varaiable, de momento funciona asi)
+                //caidaFicha(temporizador, &pos_y, 16);//16=limite inferior del tablero (a modificar con una varaiable, de momento funciona asi)
+                if(gbt_temporizador_consumir(temporizador) && !colision(matriz, FIL, COL, pieza, pos_y, pos_x))
+                    pos_y=pos_y+1;
+                if(gbt_tecla_sostenida(GBTK_ABAJO) && !colision(matriz, FIL, COL, pieza, pos_y, pos_x))
+                    pos_y=pos_y+1;
 
-                if(pos_y==16) //16=limite inferior del tablero (a modificar con una varaiable, de momento funciona asi)
+                if(pos_y==16 || colision(matriz, FIL, COL, pieza, pos_y, pos_x)) //16=limite inferior del tablero (a modificar con una varaiable, de momento funciona asi)
                 {
                     fijar(matriz, FIL, COL, pieza, pos_y, pos_x);
                     dibujar_matriz(matriz,FIL,COL,inicio_x,inicio_y,TAM_CELDA);

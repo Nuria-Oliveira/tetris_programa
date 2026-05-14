@@ -118,7 +118,7 @@ void moverPieza (int *pos, int totCol, int pieza[PIEZA][PIEZA], int cf)
     int aux;
     int col=-1; //columna de la pieza mas a la der o izq segun mov
     int i=0, j=0;
-//    eGBT_Tecla tecla = gbt_obtener_tecla_presionada();
+//  eGBT_Tecla tecla = gbt_obtener_tecla_presionada();
     if(gbt_tecla_sostenida(GBTK_IZQUIERDA))
     {
         aux=*pos-1;
@@ -182,9 +182,9 @@ void fijar (int mat [][COL], int cf, int cc, int pieza [][PIEZA], int pos_y, int
 {
     int i=pos_y, j=pos_x;
     int pi=0, pj=0; //i y j de la pieza
-    printf("x= %d\n", i);
-    printf("y= %d\n", j);
-    printf("limite x: %d limite y: %d\n", cf, cc);
+//    printf("x= %d\n", i);
+//    printf("y= %d\n", j);
+//    printf("limite x: %d limite y: %d\n", cf, cc);
     while(i<cf && pi<PIEZA)
     {
         while(j<cc && pj<PIEZA)
@@ -199,4 +199,36 @@ void fijar (int mat [][COL], int cf, int cc, int pieza [][PIEZA], int pos_y, int
         i++;
         pi++;
     }
+}
+
+int colision (int mat [][10], int cf, int cc, int pieza [][4], int pos_y, int pos_x)
+{
+    int colision=0;
+    int i=pos_y, j=pos_x; //posicion de la pieza en el tablero
+    int pi=0, pj=0; //i y j de la pieza
+
+    if(pos_y==16)
+        colision=1;
+    else
+    {
+        while(i<cf && pi<PIEZA)
+        {
+            while(j<cc && pj<PIEZA)
+            {
+                if(mat[pos_y+pi+3][pos_x+pj]!=0 && pieza[pi][pj]!=0) //falta buscar forma de verificar la colision con otra ficha ya fijada
+                {
+                    colision=1;
+                    fijar(mat, cf, cc, pieza, pos_y, pos_x);
+                }
+                j++;
+                pj++;
+            }
+            j=0;
+            pj=0;
+            i++;
+            pi++;
+        }
+    }
+    return colision;
+
 }
